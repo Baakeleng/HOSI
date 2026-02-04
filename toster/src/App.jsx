@@ -5,10 +5,10 @@ import Oven1 from "../src/comps/Oven1"
 function App() {
 
   return (
-  
-    <Tost/>,
+  <>
+    <Tost/>
     <Oven1/>
-    
+    </>
   )
 }
 export default App

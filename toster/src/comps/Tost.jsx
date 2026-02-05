@@ -14,7 +14,7 @@ export default function Tosting() { //definines the toasting component
 //use to stop the timer
   const clearTimers = () => {
     clearInterval(intervalRef.current);
-    clearTimeout(timeoutRef.current);
+    clearTimeout(timeoutRef.current); 
   };
 //functions to handle stop timers and reset state
   const toastPopUp = () => {

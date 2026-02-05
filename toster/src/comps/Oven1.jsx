@@ -1,26 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const Oven1 = () => {
+const Oven1 = () => { //defining oven1 component
 
-  // 1. oven  current state
+  // oven  current state temp.mode and target
   const [currentTemp, setCurrentTemp] = useState(0);
   const [targetTemp, setTargetTemp] = useState(0);
   const [mode, setMode] = useState("off"); // "off", "bake", "grill", "both"
 
-  // 2. keeps track of the temperature 
+  //  keeps track of  temperature ID  
   const sensorInterval = useRef(null);
 
-  // 3. The Brain (useEffect): Runs the logic every time the mode or target changes
+  // The Brain Runs the logic every time the mode or target changes
   useEffect(() => {
-    // Start the "Sensor"
+    //starts the sensor
     sensorInterval.current = setInterval(() => {
-      updateHeat();
-    }, 1000);
+      updateHeat();//to adjust temperature
+    }, 1000);// runs every second(1000ms)
 
     // Cleanup: This stops the timer if the component is closed or restarted
     return () => clearInterval(sensorInterval.current);
   }, [mode, targetTemp, currentTemp]); 
-
+//updateheat function//adjust temp based on the mode ans target
+//turns off when the target is reached
   const updateHeat = () => {
     if (mode === "off") {
       if (currentTemp > 0) setCurrentTemp(prev => prev - 1);
@@ -37,12 +38,13 @@ const Oven1 = () => {
       }
     }
   };
-
+//function to calculate heatrate
+//returns heat rate based on the mode
   const calculateHeatRate = () => {
     const rates = { bake: 2, grill: 3, both: 5 };
     return rates[mode] || 0;
   };
-
+// dsiplays the temperature,mode and contorls
   return (
     <div>
       <h2>Smart Oven</h2>
